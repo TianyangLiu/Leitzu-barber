@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Model\Client;
 use Illuminate\Http\Request;
+use App\Http\Resources\Client\ClientResource;
+use App\Http\Resources\Client\ClientCollection;
 
 class ClientController extends Controller
 {
@@ -14,7 +16,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        return ClientCollection::collection(Client::all());
     }
 
     /**
@@ -46,7 +48,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        return new ClientResource($client);
     }
 
     /**
