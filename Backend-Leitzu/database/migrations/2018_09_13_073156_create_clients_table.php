@@ -18,6 +18,7 @@ class CreateClientsTable extends Migration
             $table->string('name');
             $table->string('gender');
             $table->string('phone');
+            $table->decimal('amount', 8, 2);
             $table->date('next_contact_date')->nullable();
             $table->timestamps();
         });
