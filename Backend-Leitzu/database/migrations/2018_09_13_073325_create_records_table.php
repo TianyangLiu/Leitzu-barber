@@ -15,6 +15,9 @@ class CreateRecordsTable extends Migration
     {
         Schema::create('records', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('client_id')->unsigned()->index();
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->text('content');
             $table->timestamps();
         });
     }
