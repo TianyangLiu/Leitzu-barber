@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Model\Record;
+use App\Model\Client;
+use App\Http\Resources\Record\RecordResource;
 use Illuminate\Http\Request;
 
 class RecordController extends Controller
@@ -12,9 +14,9 @@ class RecordController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Client $client)
     {
-        //
+        return RecordResource::collection($client->records);
     }
 
     /**
@@ -44,9 +46,9 @@ class RecordController extends Controller
      * @param  \App\Model\Record  $record
      * @return \Illuminate\Http\Response
      */
-    public function show(Record $record)
+    public function show(Client $client, Record $record)
     {
-        //
+        return new RecordResource($record);
     }
 
     /**

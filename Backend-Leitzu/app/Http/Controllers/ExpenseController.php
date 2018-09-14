@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Model\Expense;
+use App\Model\Client;
+use App\Http\Resources\Expense\ExpenseResource;
 use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
@@ -12,9 +14,9 @@ class ExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Client $client)
     {
-        //
+        return ExpenseResource::collection($client->expenses);
     }
 
     /**
@@ -44,9 +46,9 @@ class ExpenseController extends Controller
      * @param  \App\Model\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function show(Expense $expense)
+    public function show(Client $client, Expense $expense)
     {
-        //
+        return new ExpenseResource($expense);
     }
 
     /**
