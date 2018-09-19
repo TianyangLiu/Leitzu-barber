@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ClientComponent } from './components/client/client.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     ClientsComponent,
     RecordsComponent,
     ExpensesComponent,
-    DashboardComponent
+    DashboardComponent,
+    ClientComponent
   ],
   imports: [
     BrowserModule,AppRoutingModule,

@@ -23,7 +23,7 @@ class ClientCollection extends Resource
             'next_contact_date' => $this->next_contact_date,
             'established_date' => $this->created_at->format('Y年m月d日'),
             'href' => [
-                'records' => route('clients.show', $this->id)
+                'detail' => route('clients.show', $this->id)
             ]
         ];
     }

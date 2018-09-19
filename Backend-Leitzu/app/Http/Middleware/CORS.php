@@ -20,7 +20,7 @@ class CORS
         Header('Access-Control-Allow-Methods : *');
 
         Header('Access-Control-Allow-headers : Content-type, X-Auth-Token, Authorization, Origin');
-        
+    
         return $next($request);
     }
 }

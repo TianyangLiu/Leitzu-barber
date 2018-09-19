@@ -6,18 +6,24 @@ import { ClientsComponent } from './components/clients/clients.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RecordsComponent } from './components/records/records.component';
 import { ExpensesComponent } from './components/expenses/expenses.component';
+import { ClientComponent } from './components/client/client.component';
 
 const appRoutes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
+    component: DashboardComponent
     //canActivate: [BeforeLoginService]
   },
 
   {
     path: 'clients',
-    component: ClientsComponent,
+    component: ClientsComponent
     //canActivate: [BeforeLoginService]
+  },
+
+  {
+    path: 'clients/:id',
+    component: ClientComponent
   },
 ]
 

@@ -13,15 +13,38 @@ export class ClientService {
 
   constructor(private http: HttpClient) { }
 
+  // all clients
   getClients(): Observable<any>{
     return this.http.get<any>(`${this.baseUrl}/${this.clientUrl}`);
   }
 
-  getSingleClient(id: number): Observable<any>{
+  // single client detail
+  getClient(id: number): Observable<any>{
     return this.http.get<any>(`${this.baseUrl}/${this.clientUrl}/${id}`);
   }
 
   getRequiredPage(apiPath: string): Observable<any>{
     return this.http.get<any>(apiPath);
   }
+
+  getRecords(apiPath: string): Observable<any>{
+    return this.http.get<any>(apiPath);
+  }
+
+  getExpenses(apiPath: string): Observable<any>{
+    return this.http.get<any>(apiPath);
+  }
+
+  updateClient(data){
+    let body = JSON.stringify(data);
+    let id = data.id;
+    return this.http.put(`${this.baseUrl}/${this.baseUrl}/${id}`, body, httpOptions);
+  }
 }
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+  })
+};
