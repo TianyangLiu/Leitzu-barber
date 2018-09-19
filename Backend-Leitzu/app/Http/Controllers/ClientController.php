@@ -16,7 +16,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return ClientCollection::collection(Client::all());
+        $collection = Client::orderBy('id', 'DESC')->paginate(5);
+
+        return ClientCollection::collection($collection);
     }
 
     /**
