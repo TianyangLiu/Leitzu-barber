@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientService } from '../../services/client.service';
+import { Clients } from '../../interfaces/clients';
+import { PaginateLinks } from '../../interfaces/paginate-links';
+import { PaginateInfo } from '../../interfaces/paginate-info';
 
 @Component({
   selector: 'app-clients',
@@ -7,20 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientsComponent implements OnInit {
 
-  //public clients: Clients[] = [];
+  public clients: Clients[] = [];
 
-  //public paginateLinks: PaginateLinks[] = [];
+  public paginateLinks: PaginateLinks[] = [];
 
-  //public paginateInfo: PaginateInfo[] = [];
+  public paginateInfo: PaginateInfo[] = [];
 
   public toPagePath = null;
 
   public error = null;
 
-  constructor() { }
+  constructor(private client: ClientService) { }
 
   ngOnInit() {
-    this.client.getPotential().subscribe(
+    this.client.getClients().subscribe(
       data => this.handleResponse(data),
       error => this.handleError(error)
     );
@@ -60,9 +64,9 @@ export class ClientsComponent implements OnInit {
   }
 
   setData(apiPath){
-    this.clients.getRequiredPage(apiPath)
+    this.client.getRequiredPage(apiPath)
       .subscribe(data => {
-        this.potentialStudents = data.data;
+        this.clients = data.data;
         this.paginateLinks = data.links
         this.paginateInfo = data.meta;
     });
