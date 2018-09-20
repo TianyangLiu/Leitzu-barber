@@ -1,0 +1,28 @@
+<div class="mt-4 col-8 offset-2">
+
+  <div class="card">
+
+    <div class="card-header">雷子造型后台管理登录</div>
+
+    <div class="card-body">
+      
+      <form #loginForm=ngForm (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">邮箱地址</label>
+          <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请输入您的邮箱地址" [(ngModel)]="form.email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword1">密码</label>
+          <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="密码" [(ngModel)]="form.password" required>
+        </div>
+
+        <button type="submit" class="btn btn-outline-primary btn-sm" [disabled]="!loginForm.valid">&nbsp;&nbsp;登录&nbsp;&nbsp;</button>
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

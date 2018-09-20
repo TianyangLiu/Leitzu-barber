@@ -13,6 +13,11 @@ import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ClientComponent } from './components/client/client.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { RequestPasswordResetComponent } from './components/request-password-reset/request-password-reset.component';
+import { ResponsePasswordResetComponent } from './components/response-password-reset/response-password-reset.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,12 @@ import { ClientComponent } from './components/client/client.component';
     RecordsComponent,
     ExpensesComponent,
     DashboardComponent,
-    ClientComponent
+    ClientComponent,
+    LoginComponent,
+    SignUpComponent,
+    ProfileComponent,
+    RequestPasswordResetComponent,
+    ResponsePasswordResetComponent
   ],
   imports: [
     BrowserModule,AppRoutingModule,

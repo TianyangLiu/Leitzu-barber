@@ -1,0 +1,22 @@
+.card{
+    background-color: #212529;
+    border: solid 1px #fff;
+    color: #fff;
+}
+
+.card-header{
+    border-bottom: solid 1px #fff;
+    font-size: 1.5em;
+}
+
+label{
+    font-size: 1em;
+}
+
+.ng-invalid:not(form){
+    border-left: solid 5px red;
+}
+
+.ng-valid:not(form){
+    border-left: solid 5px lightgreen;
+}
