@@ -29,3 +29,12 @@ a{
 a:hover{
     background-color: #5b636b;
 }
+
+img{
+    width: 90px;
+    height: 90px;
+}
+
+img:hover{
+    cursor: pointer;
+}

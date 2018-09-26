@@ -1,3 +1,62 @@
-<p>
-  sign-up works!
-</p>
+<div class="mt-4 col-8 offset-2">
+
+    <div class="card">
+  
+      <div class="card-header">创建新用户</div>
+  
+      <div class="card-body">
+        
+        <form #signupForm=ngForm (ngSubmit)="onSubmit()">
+  
+          <!--成功信息-->
+          <div class="alert alert-success" [hidden]="!success_message">
+            {{success_message}}
+          </div>
+  
+          <!--错误信息-->
+          <div class="alert alert-danger" [hidden]="!error.email">
+            {{error.email}}
+          </div>
+  
+          <div class="alert alert-danger" [hidden]="!error.password">
+            {{error.password}}
+          </div>
+
+          <div [hidden]="success_message">
+            <!--姓名-->
+            <div class="form-group">
+              <input type="text" name="name" class="form-control" placeholder="姓名" [(ngModel)]="form.name" required>
+            </div>
+
+            <!--邮箱-->
+            <div class="form-group">
+              <input type="email" name="email" class="form-control" placeholder="邮箱地址" aria-describedby="emailHelp" [(ngModel)]="form.email" required>
+            </div>
+
+            <!--密码-->
+            <div class="form-group">
+              <input type="password" name="password" class="form-control" placeholder="密码" [(ngModel)]="form.password" required>
+            </div>
+
+            <!--密码确认-->
+            <div class="form-group">
+              <input type="password" name="password_confirmation" class="form-control" placeholder="确认密码" [(ngModel)]="form.password_confirmation" required>
+            </div>
+
+            <!--注册-->
+            <div class="form-group">
+              <button type="submit" class="btn btn-outline-primary btn-sm" [disabled]="!signupForm.valid">注册</button>
+            </div>
+          </div>
+
+        </form>
+
+        <div [hidden]="!success_message">
+          <button class="btn btn-outline-success btn-sm" (click)="back()">&nbsp;返回并添加新用户&nbsp;</button>
+        </div>
+  
+      </div>
+  
+    </div>
+  
+  </div>

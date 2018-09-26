@@ -3,7 +3,12 @@
     <h1>雷子造型</h1>
     <h2>Leitzu Barber</h2>
 
-    <button class="btn btn-outline-success btn-sm" routerLink="">&nbsp;登录&nbsp;</button>
+    <button class="btn btn-outline-success btn-sm" routerLink="" *ngIf="!loggedIn">&nbsp;登录&nbsp;</button>
+    <p></p>
+
+
+    <img src="assets/images/user-icon.png" routerLink="/profile" *ngIf="loggedIn"><br *ngIf="loggedIn"/><br *ngIf="loggedIn"/>
+    <button class="btn btn-outline-success btn-sm" (click)="logout($event)" *ngIf="loggedIn">&nbsp;登出&nbsp;</button>
     <p></p>
   </li>
 
