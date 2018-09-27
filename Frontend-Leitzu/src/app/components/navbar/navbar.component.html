@@ -7,7 +7,7 @@
     <p></p>
 
 
-    <img src="assets/images/user-icon.png" routerLink="/profile" *ngIf="loggedIn"><br *ngIf="loggedIn"/><br *ngIf="loggedIn"/>
+    <img class="profile-img" src="assets/images/user-icon.png" routerLink="/profile" *ngIf="loggedIn" /><br *ngIf="loggedIn"/><br *ngIf="loggedIn"/>
     <button class="btn btn-outline-success btn-sm" (click)="logout($event)" *ngIf="loggedIn">&nbsp;登出&nbsp;</button>
     <p></p>
   </li>

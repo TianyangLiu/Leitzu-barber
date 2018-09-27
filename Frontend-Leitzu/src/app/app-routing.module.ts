@@ -12,53 +12,56 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RequestPasswordResetComponent } from './components/request-password-reset/request-password-reset.component';
 import { ResponsePasswordResetComponent } from './components/response-password-reset/response-password-reset.component';
+import { BeforeLoginService } from './services/before-login.service';
+import { AfterLoginService } from './services/after-login.service';
 
 const appRoutes: Routes = [
   {
   path: '',
     component: LoginComponent,
-    //canActivate: [BeforeLoginService]
-  },
-
-  {
-    path: 'sign-up',
-    component: SignUpComponent,
-    //canActivate: [AfterLoginService]
-  },
-
-  {
-    path: 'profile',
-    component: ProfileComponent,
-    //canActivate: [AfterLoginService]
+    canActivate: [BeforeLoginService]
   },
 
   {
     path: 'request-password-reset',
     component: RequestPasswordResetComponent,
-    //canActivate: [BeforeLoginService]
+    canActivate: [BeforeLoginService]
   },
 
   {
     path: 'response-password-reset',
     component: ResponsePasswordResetComponent,
-    //canActivate: [BeforeLoginService]
+    canActivate: [BeforeLoginService]
+  },
+
+  {
+    path: 'sign-up',
+    component: SignUpComponent,
+    canActivate: [AfterLoginService]
+  },
+
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AfterLoginService]
   },
 
   {
     path: 'dashboard',
-    component: DashboardComponent
-    //canActivate: [BeforeLoginService]
+    component: DashboardComponent,
+    canActivate: [AfterLoginService]
   },
 
   {
     path: 'clients',
-    component: ClientsComponent
-    //canActivate: [BeforeLoginService]
+    component: ClientsComponent,
+    canActivate: [AfterLoginService]
   },
 
   {
     path: 'clients/:id',
-    component: ClientComponent
+    component: ClientComponent,
+    canActivate: [AfterLoginService]
   },
 ]
 

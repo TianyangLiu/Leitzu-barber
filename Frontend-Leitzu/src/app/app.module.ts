@@ -35,7 +35,8 @@ import { ResponsePasswordResetComponent } from './components/response-password-r
     ResponsePasswordResetComponent
   ],
   imports: [
-    BrowserModule,AppRoutingModule,
+    BrowserModule,
+    AppRoutingModule,
     RouterModule,
     FormsModule,
     HttpClientModule
