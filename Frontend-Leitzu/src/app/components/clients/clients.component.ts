@@ -92,4 +92,8 @@ export class ClientsComponent implements OnInit {
     return true;
   }
 
+  reset(){
+    
+  }
+
 }
