@@ -18,6 +18,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RequestPasswordResetComponent } from './components/request-password-reset/request-password-reset.component';
 import { ResponsePasswordResetComponent } from './components/response-password-reset/response-password-reset.component';
+import { NewClientComponent } from './components/new-client/new-client.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ResponsePasswordResetComponent } from './components/response-password-r
     SignUpComponent,
     ProfileComponent,
     RequestPasswordResetComponent,
-    ResponsePasswordResetComponent
+    ResponsePasswordResetComponent,
+    NewClientComponent
   ],
   imports: [
     BrowserModule,

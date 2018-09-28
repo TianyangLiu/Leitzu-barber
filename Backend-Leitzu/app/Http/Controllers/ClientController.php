@@ -6,6 +6,7 @@ use App\Model\Client;
 use Illuminate\Http\Request;
 use App\Http\Resources\Client\ClientResource;
 use App\Http\Resources\Client\ClientCollection;
+use App\Http\Requests\UpdateClientRequest;
 
 class ClientController extends Controller
 {
@@ -71,9 +72,24 @@ class ClientController extends Controller
      * @param  \App\Model\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(UpdateClientRequest $request, Client $client)
     {
-        //
+        $client= Client::findOrFail($request->id);
+
+
+        // set new update data
+        $client->name = $request->name;
+
+        $client->gender = $request->gender;
+
+        $client->phone = $request->phone;
+
+        $client->amount = $request->amount;
+
+        $client->next_contact_date = $request->next_contact_date;
+
+        // stores the update
+        $client->save();
     }
 
     /**

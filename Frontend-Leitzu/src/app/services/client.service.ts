@@ -35,10 +35,15 @@ export class ClientService {
     return this.http.get<any>(apiPath);
   }
 
+  newClient(data){
+    let body = JSON.stringify(data);
+    return this.http.post(`${this.baseUrl}/${this.clientUrl}`, body, httpOptions);
+  }
+
   updateClient(data){
     let body = JSON.stringify(data);
     let id = data.id;
-    return this.http.put(`${this.baseUrl}/${this.baseUrl}/${id}`, body, httpOptions);
+    return this.http.put(`${this.baseUrl}/${this.clientUrl}/${id}`, body, httpOptions);
   }
 }
 

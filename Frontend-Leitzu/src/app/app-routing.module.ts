@@ -14,6 +14,7 @@ import { RequestPasswordResetComponent } from './components/request-password-res
 import { ResponsePasswordResetComponent } from './components/response-password-reset/response-password-reset.component';
 import { BeforeLoginService } from './services/before-login.service';
 import { AfterLoginService } from './services/after-login.service';
+import { NewClientComponent } from './components/new-client/new-client.component';
 
 const appRoutes: Routes = [
   {
@@ -59,10 +60,17 @@ const appRoutes: Routes = [
   },
 
   {
+    path: 'clients/new-client',
+    component: NewClientComponent,
+    canActivate: [AfterLoginService]
+  },
+
+  {
     path: 'clients/:id',
     component: ClientComponent,
     canActivate: [AfterLoginService]
   },
+
 ]
 
 @NgModule({

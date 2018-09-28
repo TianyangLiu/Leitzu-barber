@@ -20,12 +20,21 @@ export class ClientComponent implements OnInit {
 
   public expenses: Expenses[] = [];
 
-  public error = [];
+  public success = null;
+
+  public error = {
+    name: null,
+    gender: null,
+    phone: null,
+    next_contact_date: null
+  };
+
+  public temp_err = null;
 
   constructor
   ( private client: ClientService,
     private router: Router,
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -50,7 +59,22 @@ export class ClientComponent implements OnInit {
     history.go(-1);
   }
 
+  resetSuccess(){
+    this.success = null;
+  }
+
   onSubmit(){
+    if(this.success){
+      this.success = null;
+    }
+
+    this.temp_err = null;
+    this.error = {
+      name: null,
+      gender: null,
+      phone: null,
+      next_contact_date: null
+    };
 
     this.client.updateClient(this.clientInfo).subscribe(
       data => this.handleResponse(data),
@@ -60,11 +84,12 @@ export class ClientComponent implements OnInit {
   }
 
   handleResponse(data){
-    console.log("updated");
+    this.success = 1;
   }
 
   handleError(error){
-    this.error = error.error.error;
+    this.temp_err = 1;
+    this.error = error.error.errors;
   }
 
 }
