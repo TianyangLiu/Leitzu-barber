@@ -85,7 +85,7 @@ class ClientController extends Controller
 
         $client->phone = $request->phone;
 
-        $client->amount = $request->amount;
+        $client->amount += $request->rechargeAmount;
 
         $client->next_contact_date = $request->next_contact_date;
 

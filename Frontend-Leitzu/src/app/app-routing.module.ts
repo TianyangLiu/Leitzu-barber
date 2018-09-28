@@ -15,6 +15,7 @@ import { ResponsePasswordResetComponent } from './components/response-password-r
 import { BeforeLoginService } from './services/before-login.service';
 import { AfterLoginService } from './services/after-login.service';
 import { NewClientComponent } from './components/new-client/new-client.component';
+import { RenewComponent } from './components/renew/renew.component';
 
 const appRoutes: Routes = [
   {
@@ -62,6 +63,12 @@ const appRoutes: Routes = [
   {
     path: 'clients/new-client',
     component: NewClientComponent,
+    canActivate: [AfterLoginService]
+  },
+
+  {
+    path: 'clients/renew/:id',
+    component: RenewComponent,
     canActivate: [AfterLoginService]
   },
 

@@ -38,11 +38,17 @@ export class ClientService {
 
   newClient(data){
     let body = JSON.stringify(data);
-    console.log(body);
     return this.http.post(`${this.baseUrl}/${this.clientUrl}`, body, httpOptions);
   }
 
   updateClient(data){
+    let body = JSON.stringify(data);
+    let id = data.id;
+    return this.http.put(`${this.baseUrl}/${this.clientUrl}/${id}`, body, httpOptions);
+  }
+
+  renew(data, recharge){
+    data["rechargeAmount"] = recharge;
     let body = JSON.stringify(data);
     let id = data.id;
     return this.http.put(`${this.baseUrl}/${this.clientUrl}/${id}`, body, httpOptions);
