@@ -35,7 +35,7 @@ export class NewClientComponent implements OnInit {
   }
 
   back(){
-    history.go(-1);
+    this.router.navigateByUrl('/clients');
   }
 
   onSubmit(){

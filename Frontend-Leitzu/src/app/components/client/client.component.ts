@@ -33,7 +33,8 @@ export class ClientComponent implements OnInit {
 
   constructor
   ( private client: ClientService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -55,7 +56,7 @@ export class ClientComponent implements OnInit {
   }
 
   back(){
-    history.go(-1);
+    this.router.navigateByUrl('/clients');
   }
 
   resetSuccess(){
