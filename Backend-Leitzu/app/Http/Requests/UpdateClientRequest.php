@@ -26,7 +26,7 @@ class UpdateClientRequest extends FormRequest
         return [
             'name' => 'required',
             'gender' => 'required',
-            'phone' => 'required|min:11|max:11|unique:clients,phone',
+            'phone' => 'required|min:11|max:11',
             'amount' => 'required',
             'next_contact_date' => ''
         ];
@@ -40,8 +40,7 @@ class UpdateClientRequest extends FormRequest
             'phone.required' => '* 手机号码不能为空',
             'amount.required' => '* 错误！剩余金额不能为null，请与管理员联系。',
             'phone.min' => '* 手机号位数不正确',
-            'phone.max' => '* 手机号位数不正确',
-            'phone.unique' => '会员已存在, 请查对手机号码'
+            'phone.max' => '* 手机号位数不正确'
         ];
     }
 }
