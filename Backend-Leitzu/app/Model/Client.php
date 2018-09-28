@@ -10,6 +10,10 @@ use App\Model\Expense;
 
 class Client extends Model
 {
+    protected $fillable = [
+        'name', 'gender', 'phone', 'amount'
+    ];
+
     public function records(){
 
         return $this->hasMany(Record::class);

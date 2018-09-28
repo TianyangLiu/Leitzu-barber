@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
+import { Client } from '../interfaces/clients';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,7 @@ export class ClientService {
 
   newClient(data){
     let body = JSON.stringify(data);
+    console.log(body);
     return this.http.post(`${this.baseUrl}/${this.clientUrl}`, body, httpOptions);
   }
 

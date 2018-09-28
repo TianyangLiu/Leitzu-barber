@@ -6,6 +6,7 @@ use App\Model\Client;
 use Illuminate\Http\Request;
 use App\Http\Resources\Client\ClientResource;
 use App\Http\Resources\Client\ClientCollection;
+use App\Http\Requests\NewClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 
 class ClientController extends Controller
@@ -38,9 +39,9 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewClientRequest $request)
     {
-        //
+        $client = Client::create($request->all());
     }
 
     /**

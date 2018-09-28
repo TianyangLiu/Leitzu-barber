@@ -33,7 +33,6 @@ export class ClientComponent implements OnInit {
 
   constructor
   ( private client: ClientService,
-    private router: Router,
     private route: ActivatedRoute
   ) { }
 
