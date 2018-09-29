@@ -6,6 +6,7 @@ use App\Model\Record;
 use App\Model\Client;
 use App\Http\Resources\Record\RecordResource;
 use Illuminate\Http\Request;
+use App\Http\Requests\NewRecordRequest;
 
 class RecordController extends Controller
 {
@@ -16,7 +17,13 @@ class RecordController extends Controller
      */
     public function index(Client $client)
     {
-        return RecordResource::collection($client->records);
+        //return RecordResource::collection($client->records);
+
+        $records = $client->records;
+
+        $collection = $records->sortByDesc('id');
+
+        return RecordResource::collection($collection);
     }
 
     /**
@@ -35,9 +42,9 @@ class RecordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewRecordRequest $request)
     {
-        //
+        $newRecord = Record::create($request->all());
     }
 
     /**
@@ -69,9 +76,13 @@ class RecordController extends Controller
      * @param  \App\Model\Record  $record
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Record $record)
+    public function update(NewRecordRequest $request, Client $client, Record $record)
     {
-        //
+        $record= Record::findOrFail($request->id);
+
+        $record->content = $request->content;
+
+        $record->save();
     }
 
     /**
@@ -80,8 +91,9 @@ class RecordController extends Controller
      * @param  \App\Model\Record  $record
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Record $record)
+    public function destroy(Client $client, Record $record)
     {
-        //
+        $record = Record::findOrFail($record->id);
+        $record->delete();
     }
 }

@@ -12,6 +12,8 @@ export class ClientService {
 
   private clientUrl: string = "clients";
 
+  private recordUrl: string = "records";
+
   constructor(private http: HttpClient) { }
 
   // all clients
@@ -52,6 +54,20 @@ export class ClientService {
     let body = JSON.stringify(data);
     let id = data.id;
     return this.http.put(`${this.baseUrl}/${this.clientUrl}/${id}`, body, httpOptions);
+  }
+
+  createRecord(data, stuId){
+    let body = JSON.stringify(data);
+    return this.http.post(`${this.baseUrl}/${this.clientUrl}/${stuId}/${this.recordUrl}`, body, httpOptions);
+  }
+
+  updateRecord(data, stuId, recordId){
+    let body = JSON.stringify(data);
+    return this.http.put(`${this.baseUrl}/${this.clientUrl}/${stuId}/${this.recordUrl}/${recordId}`, body, httpOptions);
+  }
+
+  deleteRecord(stuId, recordId){
+    return this.http.delete(`${this.baseUrl}/${this.clientUrl}/${stuId}/${this.recordUrl}/${recordId}`, httpOptions);
   }
 }
 
