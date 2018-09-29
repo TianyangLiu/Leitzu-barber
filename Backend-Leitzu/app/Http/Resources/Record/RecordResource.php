@@ -14,6 +14,11 @@ class RecordResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'content' => $this->content,
+            'established_date' => $this->created_at->format('Y年m月d日'),
+            'updated_date' => $this->updated_at->format('Y年m月d日')
+        ];
     }
 }

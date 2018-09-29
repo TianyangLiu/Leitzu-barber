@@ -92,4 +92,8 @@ export class ClientComponent implements OnInit {
     this.error = error.error.errors;
   }
 
+  deleteRecord(){
+
+  }
+
 }
