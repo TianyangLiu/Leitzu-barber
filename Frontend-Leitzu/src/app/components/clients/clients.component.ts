@@ -96,4 +96,17 @@ export class ClientsComponent implements OnInit {
     
   }
 
+  deleteClient(clientId){
+    this.client.deleteClient(clientId).subscribe(
+      data => this.handleDeleteClientResponse()
+    );
+  }
+
+  handleDeleteClientResponse(){
+    this.client.getClients().subscribe(
+      data => this.handleResponse(data),
+      error => this.handleError(error)
+    );
+  }
+
 }

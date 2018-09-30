@@ -57,3 +57,12 @@ tfoot a:hover{
     border-style: solid;
     border-width: 0px 0px 1px 0px;
 }
+
+.confirmDeleteTitle{
+    color: rgb(231, 71, 71);
+}
+
+.confirm-btn{
+    text-align: center;
+    margin-bottom: 5px;
+}

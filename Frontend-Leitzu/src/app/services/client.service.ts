@@ -56,18 +56,22 @@ export class ClientService {
     return this.http.put(`${this.baseUrl}/${this.clientUrl}/${id}`, body, httpOptions);
   }
 
-  createRecord(data, stuId){
+  createRecord(data, clientId){
     let body = JSON.stringify(data);
-    return this.http.post(`${this.baseUrl}/${this.clientUrl}/${stuId}/${this.recordUrl}`, body, httpOptions);
+    return this.http.post(`${this.baseUrl}/${this.clientUrl}/${clientId}/${this.recordUrl}`, body, httpOptions);
   }
 
-  updateRecord(data, stuId, recordId){
+  updateRecord(data, clientId, recordId){
     let body = JSON.stringify(data);
-    return this.http.put(`${this.baseUrl}/${this.clientUrl}/${stuId}/${this.recordUrl}/${recordId}`, body, httpOptions);
+    return this.http.put(`${this.baseUrl}/${this.clientUrl}/${clientId}/${this.recordUrl}/${recordId}`, body, httpOptions);
   }
 
-  deleteRecord(stuId, recordId){
-    return this.http.delete(`${this.baseUrl}/${this.clientUrl}/${stuId}/${this.recordUrl}/${recordId}`, httpOptions);
+  deleteRecord(clientId, recordId){
+    return this.http.delete(`${this.baseUrl}/${this.clientUrl}/${clientId}/${this.recordUrl}/${recordId}`, httpOptions);
+  }
+
+  deleteClient(clientId){
+    return this.http.delete(`${this.baseUrl}/${this.clientUrl}/${clientId}`, httpOptions);
   }
 }
 
