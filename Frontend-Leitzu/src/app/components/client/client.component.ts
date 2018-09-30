@@ -14,6 +14,8 @@ export class ClientComponent implements OnInit {
 
   public id = -1;
 
+  public recordId = null;
+
   public clientInfo: Client[] = [];
 
   public records: Records[] = [];
@@ -22,11 +24,25 @@ export class ClientComponent implements OnInit {
 
   public success = null;
 
+  public recordSuccess = null;
+
+  public recordContent = null;
+
+  public recordForm = {
+    id: null,
+    client_id: null,
+    content: null
+  }
+
   public error = {
     name: null,
     gender: null,
     phone: null,
     next_contact_date: null
+  };
+
+  public recordError = {
+    content: null
   };
 
   public temp_err = null;
@@ -40,6 +56,12 @@ export class ClientComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => { this.id = params['id']; });
 
+    this.getClientRecordExpense();
+  }
+
+  /* -------------------------- 公用方法 -------------------------- */
+
+  getClientRecordExpense(){
     this.client.getClient(this.id).subscribe(clientInfo => {
 
       this.clientInfo = clientInfo.data; // store client info
@@ -59,22 +81,17 @@ export class ClientComponent implements OnInit {
     this.router.navigateByUrl('/clients');
   }
 
+  /************************** 公用方法 end **************************/
+
+
+  /* -------------------------- 会员基本信息 -------------------------- */
+
   resetSuccess(){
     this.success = null;
   }
 
   onSubmit(){
-    if(this.success){
-      this.success = null;
-    }
-
-    this.temp_err = null;
-    this.error = {
-      name: null,
-      gender: null,
-      phone: null,
-      next_contact_date: null
-    };
+    this.sumbitReset();
 
     this.client.updateClient(this.clientInfo).subscribe(
       data => this.handleResponse(data),
@@ -92,8 +109,76 @@ export class ClientComponent implements OnInit {
     this.error = error.error.errors;
   }
 
-  deleteRecord(){
+  sumbitReset(){
+    if(this.success){
+      this.success = null;
+    }
 
+    if(this.recordSuccess){
+      this.recordSuccess = null;
+    }
+
+    this.temp_err = null;
+    this.error = {
+      name: null,
+      gender: null,
+      phone: null,
+      next_contact_date: null
+    };
+
+    this.recordError = {
+      content: null
+    };
   }
 
-}
+  /************************** 会员基本信息 end **************************/
+
+
+
+  /* -------------------------- 会员记录 -------------------------- */
+
+  createRecord(){
+    this.recordForm.client_id = this.id;
+    this.recordForm.content = this.recordContent;
+
+    this.sumbitReset();
+
+    this.client.createRecord(this.recordForm, this.id).subscribe(
+      data => this.handleRecordResponse()
+    );
+  }
+
+  updateRecord(){
+    this.recordForm.id = this.recordId;
+    this.recordForm.client_id = this.id;
+    this.recordForm.content = this.recordContent;
+
+    this.sumbitReset();
+
+    this.client.updateRecord(this.recordForm, this.id, this.recordId).subscribe(
+      data => this.handleRecordResponse()
+    );
+  }
+
+  deleteRecord(recordId){
+    this.client.deleteRecord(this.id, recordId).subscribe(
+      data => this.handleRecordResponse()
+    );
+  }
+
+  RemoveRecordContent(){
+    this.recordContent = null;
+  }
+
+  setRecord(recordId, content){
+    this.recordId = recordId;
+    this.recordContent = content;
+  }
+
+  handleRecordResponse(){
+    this.getClientRecordExpense();
+  }
+
+  /************************** 会员记录 end **************************/
+
+} // end class
