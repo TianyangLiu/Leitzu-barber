@@ -67,7 +67,7 @@ const appRoutes: Routes = [
   },
 
   {
-    path: 'clients/renew/:id',
+    path: 'clients/:id/renew',
     component: RenewComponent,
     canActivate: [AfterLoginService]
   },

@@ -71,6 +71,10 @@ export class RenewComponent implements OnInit {
 
   handleResponse(){
     this.success = 1;
+
+    this.client.getClient(this.id).subscribe(clientInfo => {
+      this.clientInfo = clientInfo.data; // store client info
+    });
   }
 
   handleError(error){

@@ -20,6 +20,7 @@ import { RequestPasswordResetComponent } from './components/request-password-res
 import { ResponsePasswordResetComponent } from './components/response-password-reset/response-password-reset.component';
 import { NewClientComponent } from './components/new-client/new-client.component';
 import { RenewComponent } from './components/renew/renew.component';
+import { NewExpenseComponent } from './components/new-expense/new-expense.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { RenewComponent } from './components/renew/renew.component';
     RequestPasswordResetComponent,
     ResponsePasswordResetComponent,
     NewClientComponent,
-    RenewComponent
+    RenewComponent,
+    NewExpenseComponent
   ],
   imports: [
     BrowserModule,

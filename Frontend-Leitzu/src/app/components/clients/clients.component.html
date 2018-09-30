@@ -32,7 +32,7 @@
       <th scope="col">账户金额</th>
       <th scope="col">下次提醒</th>
       <th scope="col">创建时间</th>
-      <th scope="col"></th>
+      <th scope="col">功能</th>
     </tr>
   </thead>
 
@@ -46,8 +46,9 @@
       <td>{{c.next_contact_date}}</td>
       <td>{{c.established_date}}</td>
       <td>
-        <button type="button" class="btn btn-outline-primary btn-sm" routerLink="renew/{{c.id}}">续费</button>
-        &nbsp;
+        <button type="button" class="btn btn-outline-primary btn-sm" routerLink="{{c.id}}/new-expense">消费</button>
+        <button type="button" class="btn btn-outline-info btn-sm" routerLink="/{{c.id}}/expenses/">账单</button>
+        <button type="button" class="btn btn-outline-success btn-sm" routerLink="{{c.id}}/renew">续费</button>
         <button type="button" class="btn btn-outline-danger btn-sm">删除</button>
       </td>
     </tr>
