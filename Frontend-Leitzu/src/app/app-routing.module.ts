@@ -16,6 +16,7 @@ import { BeforeLoginService } from './services/before-login.service';
 import { AfterLoginService } from './services/after-login.service';
 import { NewClientComponent } from './components/new-client/new-client.component';
 import { RenewComponent } from './components/renew/renew.component';
+import { NewExpenseComponent } from './components/new-expense/new-expense.component';
 
 const appRoutes: Routes = [
   {
@@ -75,6 +76,18 @@ const appRoutes: Routes = [
   {
     path: 'clients/:id',
     component: ClientComponent,
+    canActivate: [AfterLoginService]
+  },
+
+  {
+    path: 'clients/:id/expenses',
+    component: ExpensesComponent,
+    canActivate: [AfterLoginService]
+  },
+
+  {
+    path: 'clients/:id/new-expense',
+    component: NewExpenseComponent,
     canActivate: [AfterLoginService]
   },
 

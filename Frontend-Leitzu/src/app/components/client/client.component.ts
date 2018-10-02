@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../services/client.service';
 import { Client } from '../../interfaces/clients';
 import { Records } from '../../interfaces/records';
-import { Expenses } from '../../interfaces/expenses';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -19,8 +18,6 @@ export class ClientComponent implements OnInit {
   public clientInfo: Client[] = [];
 
   public records: Records[] = [];
-
-  public expenses: Expenses[] = [];
 
   public success = null;
 
@@ -68,10 +65,6 @@ export class ClientComponent implements OnInit {
 
       this.client.getRecords(clientInfo.data.href.records).subscribe(records => {
           this.records = records.data;
-      });
-
-      this.client.getExpenses(clientInfo.data.href.expenses).subscribe(expenses => {
-        this.expenses = expenses.data;
       });
 
     }); // end getClient
