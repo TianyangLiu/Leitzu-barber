@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ExpenseService } from '../../services/expense.service';
+import { ClientService } from '../../services/client.service';
+import { Expenses } from '../../interfaces/expenses';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-expenses',
@@ -7,9 +11,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExpensesComponent implements OnInit {
 
-  constructor() { }
+  public id: number = -1;
+
+  public clientName: string;
+  
+  public expenses: Expenses[] = [];
+
+  public totalExpense: number[] =[];
+
+  constructor
+  (
+    private client: ClientService,
+    private expense: ExpenseService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => { this.id = params['id']; });
+
+    this.client.getClient(this.id).subscribe(clientInfo => {
+
+      this.clientName = clientInfo.data.name;
+
+      this.expense.getExpenses(clientInfo.data.href.expenses).subscribe(expenses => {
+          this.expenses = expenses.data;
+      });
+
+    }); // end getClient
+  }
+
+  back(){
+    this.router.navigateByUrl('/clients');
   }
 
 }

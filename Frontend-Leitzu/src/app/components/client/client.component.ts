@@ -53,12 +53,6 @@ export class ClientComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => { this.id = params['id']; });
 
-    this.getClientRecordExpense();
-  }
-
-  /* -------------------------- 公用方法 -------------------------- */
-
-  getClientRecordExpense(){
     this.client.getClient(this.id).subscribe(clientInfo => {
 
       this.clientInfo = clientInfo.data; // store client info
@@ -69,6 +63,20 @@ export class ClientComponent implements OnInit {
 
     }); // end getClient
   }
+
+  /* -------------------------- 公用方法 -------------------------- */
+
+  // getClientRecordExpense(){
+  //   this.client.getClient(this.id).subscribe(clientInfo => {
+
+  //     this.clientInfo = clientInfo.data; // store client info
+
+  //     this.client.getRecords(clientInfo.data.href.records).subscribe(records => {
+  //         this.records = records.data;
+  //     });
+
+  //   }); // end getClient
+  // }
 
   back(){
     this.router.navigateByUrl('/clients');
@@ -169,7 +177,15 @@ export class ClientComponent implements OnInit {
   }
 
   handleRecordResponse(){
-    this.getClientRecordExpense();
+    this.client.getClient(this.id).subscribe(clientInfo => {
+
+      this.clientInfo = clientInfo.data; // store client info
+
+      this.client.getRecords(clientInfo.data.href.records).subscribe(records => {
+          this.records = records.data;
+      });
+
+    }); // end getClient
   }
 
   /************************** 会员记录 end **************************/

@@ -34,10 +34,6 @@ export class ClientService {
     return this.http.get<any>(apiPath);
   }
 
-  getExpenses(apiPath: string): Observable<any>{
-    return this.http.get<any>(apiPath);
-  }
-
   newClient(data){
     let body = JSON.stringify(data);
     return this.http.post(`${this.baseUrl}/${this.clientUrl}`, body, httpOptions);

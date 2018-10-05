@@ -15,6 +15,10 @@ export class ExpenseService {
 
   constructor(private http: HttpClient) { }
 
+  getExpenses(apiPath: string): Observable<any>{
+    return this.http.get<any>(apiPath);
+  }
+
   createExpense(data, clientId){
     let body = JSON.stringify(data);
     return this.http.post(`${this.baseUrl}/${this.clientUrl}/${clientId}/${this.expenseUrl}`, body, httpOptions);

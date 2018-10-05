@@ -9,6 +9,6 @@ $factory->define(App\Model\Expense::class, function (Faker $faker) {
         'client_id' => function(){
             return Client::all()->random();
         },
-        'activity_cost' => '剪发&30/烫染&50'
+        'activity_cost' => 100
     ];
 });
