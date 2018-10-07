@@ -19,10 +19,14 @@ Route::group([
 
 Route::apiResource('/clients', 'ClientController');
 
+
+
 Route::group(['prefix' => 'clients'], function(){
 
     Route::apiResource('/{client}/records', 'RecordController');
 
     Route::apiResource('/{client}/expenses', 'ExpenseController');
+
+    Route::get('/search/{name}', 'ClientController@search');
 
 });
