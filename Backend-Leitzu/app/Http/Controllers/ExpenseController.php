@@ -85,4 +85,20 @@ class ExpenseController extends Controller
     {
         //
     }
+
+    public function currentMonthExpense(){
+        $currentMonth = date('m');
+
+        $data = Expense::whereRaw('MONTH(created_at) = ?', [$currentMonth])->sum('activity_cost');
+
+        return $data;
+    }
+
+    public function currentYearExpense(){
+        $currentYear = date('Y');
+
+        $data = Expense::whereRaw('YEAR(created_at) = ?', [$currentYear])->sum('activity_cost');
+
+        return $data;
+    }
 }

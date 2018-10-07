@@ -19,6 +19,9 @@ Route::group([
 
 Route::apiResource('/clients', 'ClientController');
 
+Route::get('/expenses/current-month', 'ExpenseController@currentMonthExpense');
+
+Route::get('/expenses/current-year', 'ExpenseController@currentYearExpense');
 
 
 Route::group(['prefix' => 'clients'], function(){
