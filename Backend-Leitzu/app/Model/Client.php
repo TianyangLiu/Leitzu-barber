@@ -4,6 +4,8 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Model\Client;
+
 use App\Model\Record;
 
 use App\Model\Expense;

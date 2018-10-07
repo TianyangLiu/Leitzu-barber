@@ -18,7 +18,10 @@ class ClientController extends Controller
      */
     public function index()
     {
+        
+
         $collection = Client::orderBy('id', 'DESC')->paginate(10);
+
         return ClientCollection::collection($collection);
     }
 
@@ -102,5 +105,16 @@ class ClientController extends Controller
     {
         $client = Client::findOrFail($client->id);
         $client->delete();
+    }
+
+    public function search(Request $request){
+        $target = $request->name;
+
+
+        $result = Client::where('name', 'like', '%' .$target. '%')
+            ->orWhere('phone', 'like', '%' .$target. '%')
+            ->paginate(10);;
+
+        return ClientCollection::collection($result);
     }
 }

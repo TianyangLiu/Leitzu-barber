@@ -94,8 +94,18 @@ export class ClientsComponent implements OnInit {
     return true;
   }
 
+  search(searchField){
+    this.client.searchClients(searchField).subscribe(
+      data => this.handleResponse(data),
+      error => console.log(error)
+    );
+  }
+
   reset(){
-    
+    this.client.getClients().subscribe(
+      data => this.handleResponse(data),
+      error => this.handleError(error)
+    );
   }
 
   deleteClient(clientId){

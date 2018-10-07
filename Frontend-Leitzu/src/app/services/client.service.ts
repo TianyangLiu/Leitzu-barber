@@ -69,6 +69,10 @@ export class ClientService {
   deleteClient(clientId){
     return this.http.delete(`${this.baseUrl}/${this.clientUrl}/${clientId}`, httpOptions);
   }
+
+  searchClients(name): Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}/${this.clientUrl}/search/${name}`);
+  }
 }
 
 const httpOptions = {
