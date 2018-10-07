@@ -21,6 +21,8 @@ export class ClientsComponent implements OnInit {
 
   public error = null;
 
+  public searchField = null;
+
   constructor(private client: ClientService) { }
 
   ngOnInit() {

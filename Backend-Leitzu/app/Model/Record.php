@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Record extends Model
 {
     protected $fillable = [
-       'client_id', 'content'
+        'client_id', 'content'
     ];
 
     public function client(){

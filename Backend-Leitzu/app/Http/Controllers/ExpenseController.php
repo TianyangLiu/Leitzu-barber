@@ -6,6 +6,7 @@ use App\Model\Expense;
 use App\Model\Client;
 use App\Http\Resources\Expense\ExpenseResource;
 use Illuminate\Http\Request;
+use App\Http\Requests\NewExpenseRequest;
 
 class ExpenseController extends Controller
 {
@@ -35,9 +36,9 @@ class ExpenseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewExpenseRequest $request)
     {
-        //
+        $expense = Expense::create($request->all());
     }
 
     /**

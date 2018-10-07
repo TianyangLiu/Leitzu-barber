@@ -16,8 +16,8 @@
     </ul>
 
     <div class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" id="search" type="search" placeholder="会员名/手机号" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+      <input class="form-control mr-sm-2" id="search" type="search" placeholder="会员名/手机号" [(ngModel)]="searchField" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" (click)="search()">搜索</button>
     </div>
   </div>
 </nav>
