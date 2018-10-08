@@ -19,11 +19,6 @@ Route::group([
 
 Route::apiResource('/clients', 'ClientController');
 
-Route::get('/expenses/current-month', 'ExpenseController@currentMonthExpense');
-
-Route::get('/expenses/current-year', 'ExpenseController@currentYearExpense');
-
-
 Route::group(['prefix' => 'clients'], function(){
 
     Route::apiResource('/{client}/records', 'RecordController');
@@ -32,4 +27,13 @@ Route::group(['prefix' => 'clients'], function(){
 
     Route::get('/search/{name}', 'ClientController@search');
 
+});
+
+Route::group(['prefix' => 'expenses'], function(){
+
+    Route::get('/current-month', 'ExpenseController@currentMonthExpense');
+
+    Route::get('/current-year', 'ExpenseController@currentYearExpense');
+
+    Route::get('/current-month/counts', 'ExpenseController@currentMonthExpenseCounts');
 });

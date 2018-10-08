@@ -101,4 +101,12 @@ class ExpenseController extends Controller
 
         return $data;
     }
+
+    public function currentMonthExpenseCounts(){
+        $currentMonth = date('m');
+
+        $data = Expense::whereRaw('MONTH(created_at) = ?', [$currentMonth])->count('activity_cost');
+
+        return $data;
+    }
 }

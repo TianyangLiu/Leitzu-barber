@@ -31,6 +31,10 @@ export class ExpenseService {
   getYearlyExepense(): Observable<any>{
     return this.http.get<any>(`${this.baseUrl}/${this.expenseUrl}/current-year`);
   }
+
+  getMonthlyExpenseCounts(): Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}/${this.expenseUrl}/current-month/counts`);
+  }
 }
 
 const httpOptions = {

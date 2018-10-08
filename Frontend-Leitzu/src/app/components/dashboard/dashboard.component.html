@@ -10,6 +10,7 @@
       <div class="card-body">
         <h5 class="card-title">{{currentDate | date:'M'}}月</h5>
         <p class="card-text">总收入: ￥{{monthlyExepense}}</p>
+        <p class="card-text">总消费次数: {{monthlyExpenseCounts}}笔</p>
       </div>
     </div>
   </div>
@@ -18,7 +19,7 @@
     <div class="card text-white bg-dark mb-3 monthly-report" style="max-width: 18rem;">
       <div class="card-header">年报表</div>
       <div class="card-body">
-        <h5 class="card-title">{{currentDate | date:'yyyy'}}年</h5>
+        <h5 class="card-title">{{currentDate | date:'yyyy'}}年 （1月 - {{currentDate | date:'M'}}月）</h5>
         <p class="card-text">总收入: ￥{{yearlyExepense}}</p>
       </div>
     </div>
