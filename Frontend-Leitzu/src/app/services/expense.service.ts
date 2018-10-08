@@ -23,6 +23,18 @@ export class ExpenseService {
     let body = JSON.stringify(data);
     return this.http.post(`${this.baseUrl}/${this.clientUrl}/${clientId}/${this.expenseUrl}`, body, httpOptions);
   }
+
+  getMonthlyExepense(): Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}/${this.expenseUrl}/current-month`);
+  }
+
+  getYearlyExepense(): Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}/${this.expenseUrl}/current-year`);
+  }
+
+  getMonthlyExpenseCounts(): Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}/${this.expenseUrl}/current-month/counts`);
+  }
 }
 
 const httpOptions = {

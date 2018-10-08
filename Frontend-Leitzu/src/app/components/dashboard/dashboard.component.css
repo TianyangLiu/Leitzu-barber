@@ -1,0 +1,17 @@
+.title{
+    background-color: #212529;
+    color: #fff;
+    font-size: 2em;
+    border: solid #fff;
+    border-width: 0px 0px 1px 0px;
+    border-radius: 1px;
+}
+
+.title-container{
+    border-style: none;
+    background-color: #212529;
+}
+
+.monthly-report{
+    margin-top: 5vh;
+}
