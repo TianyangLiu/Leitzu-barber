@@ -38,7 +38,16 @@ class ExpenseController extends Controller
      */
     public function store(NewExpenseRequest $request)
     {
-        $expense = Expense::create($request->all());
+        $client= Client::findOrFail($request->client_id);
+        $amountRemaining = $client->amount - $request->activity_cost;
+
+        if($amountRemaining >= 0){
+            $client->amount = $amountRemaining;
+            $client->save();
+            $expense = Expense::create($request->all());
+        }else{
+            return $amountRemaining;
+        }
     }
 
     /**
