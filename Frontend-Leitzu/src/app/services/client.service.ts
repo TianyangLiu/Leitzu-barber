@@ -8,7 +8,7 @@ import { Client } from '../interfaces/clients';
 })
 export class ClientService {
   
-  private baseUrl: string = "http://server.leitzu.com/api";
+  private baseUrl: string = "http://localhost:8000/api";
 
   private clientUrl: string = "clients";
 

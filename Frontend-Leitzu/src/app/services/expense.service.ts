@@ -7,7 +7,7 @@ import { Observable } from '../../../node_modules/rxjs';
 })
 export class ExpenseService {
 
-  private baseUrl: string = "http://server.leitzu.com/api";
+  private baseUrl: string = "http://localhost:8000/api";
 
   private clientUrl: string = "clients";
 
