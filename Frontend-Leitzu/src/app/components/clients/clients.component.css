@@ -1,0 +1,68 @@
+.highlightCurrentPage{
+    color: red;
+}
+
+.table{
+    width: 100%;
+}
+
+tfoot {
+    font-size: 13px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+tfoot td {
+    font-size: 13px;
+}
+
+tfoot a{
+    display: inline-block;
+    background: #FFFFFF;
+    color: #222;
+    padding: 5px 8px;
+    margin-right: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: solid 1px;
+}
+
+tfoot a:hover{
+    border: solid 1px rgb(197, 196, 196);
+    color: #fff;
+    background: rgb(197, 196, 196);
+}
+
+.navbar{
+    padding: 1rem 0rem 1rem 0rem;
+}
+
+.bg-light{
+    background-color: #212529 !important;
+}
+
+.btn{
+    margin-right: 10px;
+}
+
+.card-header{
+    background-color: #212529;
+    color: #fff;
+    font-size: 2em;
+    padding-left: 0;
+}
+
+.card{
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+}
+
+.confirmDeleteTitle{
+    color: rgb(231, 71, 71);
+}
+
+.confirm-btn{
+    text-align: center;
+    margin-bottom: 5px;
+}

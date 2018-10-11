@@ -1,0 +1,30 @@
+form div{
+    color: #fff;
+}
+
+.title{
+    background-color: #212529;
+    color: #fff;
+    font-size: 1.5em;
+    border: solid #fff;
+    border-width: 0px 0px 1px 0px;
+    border-radius: 1px;
+    padding-left: 0;
+}
+
+.title-container{
+    border-style: none;
+    background-color: #212529;
+}
+
+.navbar{
+    padding: 1rem 0rem 1rem 0rem;
+}
+
+.bg-light{
+    background-color: #212529 !important;
+}
+
+.btn{
+    margin-right: 10px;
+}

@@ -1,0 +1,187 @@
+<div class="card">
+    <div class="card-header">
+      会员信息
+    </div>
+</div>
+
+<div class="row">
+
+  <!-- 会员基本信息: client -->
+  <div class="col-sm-5">
+    <div class="card">
+      <div class="card-body">
+
+          <div class="alert alert-danger err" [hidden]="!temp_err">
+              <p *ngIf="error.name">{{error.name}}</p>
+              <p *ngIf="error.gender">{{error.gender}}</p>
+              <p *ngIf="error.phone">{{error.phone}}</p>
+              <p *ngIf="error.amount">{{error.amount}}</p>
+          </div>
+          
+          <div class="alert alert-success alert-dismissible fade show" role="alert" [hidden]="!success">
+            <strong>修改成功!</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="resetSuccess()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          
+          <form #clientForm=ngForm (ngSubmit)="onSubmit()">
+          
+            <div class="form-row">
+              <div class="form-group col-md-5">
+                <label for="inputName">会员姓名</label>
+                <input type="text" name="name" class="form-control" id="inputName" [(ngModel)]="clientInfo.name" required>
+              </div>
+            </div>
+          
+            <div class="form-row">
+              <div class="form-group col-md-5">
+                <label for="inputGender">性别</label>
+                <select name="gender" class="form-control" id="inputGender" [(ngModel)]="clientInfo.gender">
+                  <option value="男">男</option>
+                  <option value="女">女</option>
+                </select>
+              </div>
+            </div>
+          
+            <div class="form-row">
+              <div class="form-group col-md-5">
+                <label for="inputPhoneNum">电话</label>
+                <input type="tel" name="phoneNum" class="form-control" id="inputPhoneNum" [(ngModel)]="clientInfo.phone" required>
+              </div>
+            </div>
+          
+            <div class="form-row">
+              <div class="form-group col-md-7">
+                <label for="inputNextContactDate">下次联系日期</label>
+                <input type="date" name="next_contact_date" class="form-control" id="inputNextContactDate" [(ngModel)]="clientInfo.next_contact_date">
+              </div>
+            </div>
+          
+            <div class="form-row">
+              <div class="form-group col-md-7">
+                <label for="inputEstablishedDate">创建时间</label>
+                <input type="text" name="established_date" class="form-control" id="inputEstablishedDate" [(ngModel)]="clientInfo.established_date" disabled>
+              </div>
+            </div>
+          
+            <div class="form-row">
+              <div class="form-group col-md-1.5">
+                <button type="submit" class="btn btn-outline-success">确认修改</button>
+              </div>
+          
+              <div class="form-group col-md-1">
+                  <button (click)="back()" class="btn btn-outline-primary">返回</button>
+              </div>
+            </div>
+          
+          </form>
+          
+      </div>
+
+    </div>
+  </div><!-- end client info -->
+
+  <!-- 记录: record -->
+  <div class="col-sm-7 div-record">
+    <div class="card card-record">
+
+      <div class="card-header card-header-record">
+        <div class="input-group input-group-add-record" data-toggle="modal" data-target="#newRecordModal" (click)="RemoveRecordContent()">
+          <div class="input-group-prepend">
+            <div class="input-group-text add-sign">+</div>
+          </div>
+          <span class="add">添加新记录</span>
+        </div>
+      </div>
+
+      <div class="card-body card-body-record" *ngIf="records.length; else falsyTemplate">
+
+        <div class="list-group">
+          <div *ngFor="let record of records" class="list-group-item list-group-item-action flex-column">
+            <div class="d-flex w-100 justify-content-between">
+              <small class="edit" data-toggle="modal" data-target="#updateRecordModal" (click)="setRecord(record.id, record.content)">编辑</small>
+              <small>{{record.updated_date}}</small>
+              <small (click)="deleteRecord(record.id)" class="delete">删除</small>
+            </div>
+            <p class="mb-1">
+                {{record.content}}
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <ng-template #falsyTemplate class="list-group">
+        <div class="list-group-item no-record">该会员没有任何记录</div>
+      </ng-template>
+    </div>
+  </div><!-- end client record -->
+
+</div><!-- end row -->
+
+<!-- new record modal -->
+<div class="modal fade" id="newRecordModal" tabindex="-1" role="dialog" aria-labelledby="newRecordModalCenterTitle" aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">新记录</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <textarea type="text" name="recordContent" class="form-control" id="inputRecordContent" [(ngModel)]="recordContent" rows="5" required></textarea>
+            </div>
+          </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" (click)="createRecord()" data-dismiss="modal">保存</button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- update record modal -->
+<div class="modal fade" id="updateRecordModal" tabindex="-1" role="dialog" aria-labelledby="updateRecordModalCenterTitle" aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">更新记录</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <textarea type="text" name="recordContent" class="form-control" id="inputRecordContent" [(ngModel)]="recordContent" rows="5" required></textarea>
+            </div>
+          </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" (click)="updateRecord()" data-dismiss="modal">保存</button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
