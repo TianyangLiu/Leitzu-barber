@@ -4,6 +4,11 @@
     color: #fff;
 }
 
+.login-card{
+    margin-top: 50%;
+    transform: translateY(-80%); 
+}
+
 .card-header{
     border-bottom: solid 1px #fff;
     font-size: 1.5em;
