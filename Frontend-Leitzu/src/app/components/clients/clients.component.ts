@@ -23,6 +23,8 @@ export class ClientsComponent implements OnInit {
 
   public searchField = null;
 
+  public toBeDeletedClientId = null;
+
   constructor(private client: ClientService) { }
 
   ngOnInit() {
@@ -108,8 +110,12 @@ export class ClientsComponent implements OnInit {
     );
   }
 
-  deleteClient(clientId){
-    this.client.deleteClient(clientId).subscribe(
+  setDeleteClientId(id){
+    this.toBeDeletedClientId = id;
+  }
+
+  deleteClient(){
+    this.client.deleteClient(this.toBeDeletedClientId).subscribe(
       data => this.handleDeleteClientResponse()
     );
   }

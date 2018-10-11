@@ -8,7 +8,7 @@ import { Client } from '../interfaces/clients';
 })
 export class ClientService {
   
-  private baseUrl: string = "http://localhost:8000/api";
+  private baseUrl: string = "http://server.leitzu.com/api";
 
   private clientUrl: string = "clients";
 
@@ -67,6 +67,7 @@ export class ClientService {
   }
 
   deleteClient(clientId){
+    console.log(clientId);
     return this.http.delete(`${this.baseUrl}/${this.clientUrl}/${clientId}`, httpOptions);
   }
 
