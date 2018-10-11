@@ -16,7 +16,6 @@ export class NewExpenseComponent implements OnInit {
   public clientName: string;
 
   public expenseForm = {
-    id: null,
     client_id: null,
     activity_cost: null
   }
@@ -25,7 +24,7 @@ export class NewExpenseComponent implements OnInit {
     activity_cost: null,
   };
 
-  public temp_err = null;
+  public insufficientError = null;
 
   constructor(
     private client: ClientService,
@@ -47,23 +46,30 @@ export class NewExpenseComponent implements OnInit {
   }
 
   onSubmit(){
+    this.error = {
+      activity_cost: null,
+    };
+  
+    this.insufficientError = null;
+
     this.expenseForm.client_id = this.clientId;
 
     this.expense.createExpense(this.expenseForm, this.clientId).subscribe(
-      data => this.handleResponse(),
+      data => this.handleResponse(data),
       error => this.handleError(error)
     );
 
   }
 
-  handleResponse(){
-    this.router.navigateByUrl(`/clients/${this.clientId}/expenses`);
+  handleResponse(data){
+    if(data < 0){
+      this.insufficientError = "账户余额不足";
+    }else{
+      this.router.navigateByUrl(`/clients/${this.clientId}/expenses`);
+    }
   }
 
   handleError(error){
-    if(error.error.errors){
-      this.temp_err = 1;
-    }
     this.error = error.error.errors;
   }
 
