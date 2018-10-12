@@ -20,7 +20,6 @@ export class ExpenseService {
   }
 
   createExpense(data, clientId){
-    console.log(data);
     let body = JSON.stringify(data);
     return this.http.post(`${this.baseUrl}/${this.clientUrl}/${clientId}/${this.expenseUrl}`, body, httpOptions);
   }
