@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClientsComponent } from './components/clients/clients.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { RecordsComponent } from './components/records/records.component';
 import { ExpensesComponent } from './components/expenses/expenses.component';
 import { ClientComponent } from './components/client/client.component';
 import { LoginComponent } from './components/login/login.component';

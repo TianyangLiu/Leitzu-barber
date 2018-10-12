@@ -17,8 +17,6 @@ export class RenewComponent implements OnInit {
 
   public rechargeAmount = null;
 
-  //public success = null;
-
   public error = {
     name: null,
     gender: null,
@@ -44,18 +42,10 @@ export class RenewComponent implements OnInit {
   }
 
   back(){
-    //this.router.navigateByUrl('/clients');
     this._location.back();
   }
 
-  // resetSuccess(){
-  //   this.success = null;
-  // }
-
   onSubmit(){
-    // if(this.success){
-    //   this.success = null;
-    // }
 
     this.temp_err = null;
     this.error = {
@@ -73,12 +63,6 @@ export class RenewComponent implements OnInit {
   }
 
   handleResponse(){
-    // this.success = 1;
-
-    // this.client.getClient(this.id).subscribe(clientInfo => {
-    //   this.clientInfo = clientInfo.data; // store client info
-    // });
-
     this.router.navigateByUrl('/clients');
   }
 
