@@ -3,6 +3,7 @@ import { ExpenseService } from '../../services/expense.service';
 import { ClientService } from '../../services/client.service';
 import { Expenses } from '../../interfaces/expenses';
 import { Router, ActivatedRoute } from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-expenses',
@@ -24,7 +25,8 @@ export class ExpensesComponent implements OnInit {
     private client: ClientService,
     private expense: ExpenseService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private _location: Location
   ) { }
 
   ngOnInit() {
@@ -42,7 +44,8 @@ export class ExpensesComponent implements OnInit {
   }
 
   back(){
-    this.router.navigateByUrl('/clients');
+    //this.router.navigateByUrl('/clients');
+    this._location.back();
   }
 
 }

@@ -3,6 +3,7 @@ import { ClientService } from '../../services/client.service';
 import { Client } from '../../interfaces/clients';
 import { Records } from '../../interfaces/records';
 import { Router, ActivatedRoute } from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-client',
@@ -47,7 +48,8 @@ export class ClientComponent implements OnInit {
   constructor
   ( private client: ClientService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private _location: Location
   ) { }
 
   ngOnInit() {
@@ -66,20 +68,9 @@ export class ClientComponent implements OnInit {
 
   /* -------------------------- 公用方法 -------------------------- */
 
-  // getClientRecordExpense(){
-  //   this.client.getClient(this.id).subscribe(clientInfo => {
-
-  //     this.clientInfo = clientInfo.data; // store client info
-
-  //     this.client.getRecords(clientInfo.data.href.records).subscribe(records => {
-  //         this.records = records.data;
-  //     });
-
-  //   }); // end getClient
-  // }
-
   back(){
-    this.router.navigateByUrl('/clients');
+    //this.router.navigateByUrl('/clients');
+    this._location.back();
   }
 
   /************************** 公用方法 end **************************/
