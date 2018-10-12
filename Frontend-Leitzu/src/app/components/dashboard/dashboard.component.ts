@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpenseService } from '../../services/expense.service';
+import { ClientService } from 'src/app/services/client.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,11 @@ export class DashboardComponent implements OnInit {
 
   public monthlyExpenseCounts: number;
 
-  constructor(private expense: ExpenseService) { }
+  public totalValueStoredByClients: number;
+
+  public dailyEventsInfo: any[] = [];
+
+  constructor(private client: ClientService, private expense: ExpenseService) { }
 
   ngOnInit() {
     this.currentDate = new Date();
@@ -24,6 +29,8 @@ export class DashboardComponent implements OnInit {
     this.getMonthlyExepense();
     this.getYearlyExepense();
     this.getMonthlyExpenseCounts();
+    this.getTotalValueStoredByClients();
+    this.getDailyEvents();
   }
 
   getMonthlyExepense(){
@@ -45,6 +52,22 @@ export class DashboardComponent implements OnInit {
       expense => this.monthlyExpenseCounts = expense,
       error => console.log(error)
     );
+  }
+
+  getTotalValueStoredByClients(){
+    this.client.getTotalValueStoredByClients().subscribe(
+      value => this.totalValueStoredByClients = value,
+      error => console.log(error)
+    );
+  }
+
+  getDailyEvents(){
+    this.client.getDailyEvents().subscribe(
+      data => this.dailyEventsInfo = data.data,
+      error => console.log(error)
+    );
+
+    
   }
 
 }

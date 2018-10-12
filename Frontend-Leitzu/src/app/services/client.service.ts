@@ -74,6 +74,16 @@ export class ClientService {
   searchClients(name): Observable<any>{
     return this.http.get<any>(`${this.baseUrl}/${this.clientUrl}/search/${name}`);
   }
+
+  getTotalValueStoredByClients(): Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}/${this.clientUrl}/storedValue/all`);
+  }
+
+  getDailyEvents(): Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}/${this.clientUrl}/nextContactEvents/all`);
+  }
+
+  
 }
 
 const httpOptions = {

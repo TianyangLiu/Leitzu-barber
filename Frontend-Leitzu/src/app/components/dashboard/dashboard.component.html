@@ -4,23 +4,41 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-4">
-    <div class="card text-white bg-dark mb-3 monthly-report" style="max-width: 18rem;">
-      <div class="card-header">月报表</div>
+  <div class="col-sm-3">
+    <div class="card text-white bg-dark mb-3 report" style="max-width: 18rem;">
+      <div class="card-header">每月报表</div>
       <div class="card-body">
         <h5 class="card-title">{{currentDate | date:'M'}}月</h5>
-        <p class="card-text">总收入: ￥{{monthlyExepense}}</p>
+        <p class="card-text">实际收入: ￥{{monthlyExepense}}</p>
         <p class="card-text">总消费次数: {{monthlyExpenseCounts}}笔</p>
       </div>
     </div>
   </div>
 
-  <div class="col-sm-4">
-    <div class="card text-white bg-dark mb-3 monthly-report" style="max-width: 18rem;">
-      <div class="card-header">年报表</div>
+  <div class="col-sm-3">
+    <div class="card text-white bg-dark mb-3 report" style="max-width: 18rem;">
+      <div class="card-header">每年报表</div>
       <div class="card-body">
         <h5 class="card-title">{{currentDate | date:'yyyy'}}年 （1月 - {{currentDate | date:'M'}}月）</h5>
-        <p class="card-text">总收入: ￥{{yearlyExepense}}</p>
+        <p class="card-text">实际总收入: ￥{{yearlyExepense}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="card text-white bg-dark mb-3 report" style="max-width: 18rem;">
+      <div class="card-header">会员总储值金额</div>
+      <div class="card-body">
+        <p class="card-text">￥{{totalValueStoredByClients}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="card text-white bg-dark mb-3 report" style="max-width: 18rem;">
+      <div class="card-header">下次联系事件</div>
+      <div class="card-body">
+        <p class="card-text" *ngFor="let event of dailyEventsInfo"><a routerLink="/clients/{{event.id}}">{{event.name}}</a></p>
       </div>
     </div>
   </div>
