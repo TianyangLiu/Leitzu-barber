@@ -27,6 +27,10 @@ Route::group(['prefix' => 'clients'], function(){
 
     Route::get('/search/{name}', 'ClientController@search');
 
+    Route::get('/storedValue/all', 'ClientController@totalValueStoredByClients');
+    
+    Route::get('/nextContactEvents/all', 'ClientController@dailyEvents');
+
 });
 
 Route::group(['prefix' => 'expenses'], function(){

@@ -115,4 +115,18 @@ class ClientController extends Controller
 
         return ClientCollection::collection($result);
     }
+
+    public function totalValueStoredByClients(){
+        $client = Client::sum('amount');
+
+        return $client;
+    }
+
+    public function dailyEvents(){
+        $currentDate = date('Y-m-d');
+
+        $result = Client::where('next_contact_date', '=', $currentDate)->paginate(10);;
+
+        return $result;
+    }
 }
