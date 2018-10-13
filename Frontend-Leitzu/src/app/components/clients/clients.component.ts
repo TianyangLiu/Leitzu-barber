@@ -40,6 +40,7 @@ export class ClientsComponent implements OnInit {
     this.clients = data.data;
     this.paginateLinks = data.links;
     this.paginateInfo = data.meta;
+
     this.isDataLoaded = true;
   }
 
@@ -100,6 +101,8 @@ export class ClientsComponent implements OnInit {
   }
 
   search(searchField){
+    this.isDataLoaded = false;
+
     this.client.searchClients(searchField).subscribe(
       data => this.handleResponse(data),
       error => console.log(error)
@@ -107,6 +110,8 @@ export class ClientsComponent implements OnInit {
   }
 
   reset(){
+    this.isDataLoaded = false;
+
     this.client.getClients().subscribe(
       data => this.handleResponse(data),
       error => this.handleError(error)
@@ -118,6 +123,8 @@ export class ClientsComponent implements OnInit {
   }
 
   deleteClient(){
+    this.isDataLoaded = false;
+    
     this.client.deleteClient(this.toBeDeletedClientId).subscribe(
       data => this.handleDeleteClientResponse()
     );
