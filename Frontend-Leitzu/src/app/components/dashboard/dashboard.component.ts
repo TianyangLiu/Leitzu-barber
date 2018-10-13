@@ -21,6 +21,16 @@ export class DashboardComponent implements OnInit {
 
   public dailyEventsInfo: any[] = [];
 
+  public isMonthlyExepenseLoaded = false;
+
+  public isYearlyExepenseLoaded = false;
+
+  public isMonthlyExpenseCountsLoaded = false;
+
+  public isTotalValueStoredByClientsLoaded = false;
+
+  public isDailyEventsLoaded = false;
+
   constructor(private client: ClientService, private expense: ExpenseService) { }
 
   ngOnInit() {
@@ -33,41 +43,76 @@ export class DashboardComponent implements OnInit {
     this.getDailyEvents();
   }
 
+/***************************************************************************/
+
   getMonthlyExepense(){
     this.expense.getMonthlyExepense().subscribe(
-      expense => this.monthlyExepense = expense,
+      expense => this.handleGetMonthlyResponse(expense),
       error => console.log(error)
     );
   }
+
+  handleGetMonthlyResponse(expense){
+    this.monthlyExepense = expense;
+    this.isMonthlyExepenseLoaded = true;
+  }
+
+/***************************************************************************/
 
   getYearlyExepense(){
     this.expense.getYearlyExepense().subscribe(
-      expense => this.yearlyExepense = expense,
+      expense => this.handleGetYearlyResponse(expense),
       error => console.log(error)
     );
   }
+
+  handleGetYearlyResponse(expense){
+    this.yearlyExepense = expense;
+    this.isYearlyExepenseLoaded = true;
+  }
+
+/***************************************************************************/
 
   getMonthlyExpenseCounts(){
     this.expense.getMonthlyExpenseCounts().subscribe(
-      expense => this.monthlyExpenseCounts = expense,
+      expense => this.handleGetMonthlyExpenseCountsResponse(expense),
       error => console.log(error)
     );
   }
+
+  handleGetMonthlyExpenseCountsResponse(expense){
+    this.monthlyExpenseCounts = expense;
+    this.isMonthlyExpenseCountsLoaded = true;
+  }
+
+/***************************************************************************/
 
   getTotalValueStoredByClients(){
     this.client.getTotalValueStoredByClients().subscribe(
-      value => this.totalValueStoredByClients = value,
+      value => this.handleGetTotalValueStoredByClientsResponse(value),
       error => console.log(error)
     );
   }
+
+  handleGetTotalValueStoredByClientsResponse(value){
+    this.totalValueStoredByClients = value;
+    this.isTotalValueStoredByClientsLoaded = true;
+  }
+
+/***************************************************************************/
 
   getDailyEvents(){
     this.client.getDailyEvents().subscribe(
-      data => this.dailyEventsInfo = data.data,
+      data => this.handleGetDailyEventsResponse(data),
       error => console.log(error)
     );
-
-    
   }
+
+  handleGetDailyEventsResponse(data){
+    this.dailyEventsInfo = data.data;
+    this.isDailyEventsLoaded = true;
+  }
+
+/***************************************************************************/
 
 }

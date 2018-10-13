@@ -8,7 +8,7 @@ import { Client } from '../interfaces/clients';
 })
 export class ClientService {
   
-  private baseUrl: string = "http://localhost:8000/api";
+  private baseUrl: string = "http://server.leitzu.com/api";
 
   private clientUrl: string = "clients";
 
@@ -39,7 +39,7 @@ export class ClientService {
     return this.http.post(`${this.baseUrl}/${this.clientUrl}`, body, httpOptions);
   }
 
-  updateClient(data){
+  updateClient(data): Observable<any>{
     let body = JSON.stringify(data);
     let id = data.id;
     return this.http.put(`${this.baseUrl}/${this.clientUrl}/${id}`, body, httpOptions);
@@ -52,21 +52,21 @@ export class ClientService {
     return this.http.put(`${this.baseUrl}/${this.clientUrl}/${id}`, body, httpOptions);
   }
 
-  createRecord(data, clientId){
+  createRecord(data, clientId): Observable<any>{
     let body = JSON.stringify(data);
     return this.http.post(`${this.baseUrl}/${this.clientUrl}/${clientId}/${this.recordUrl}`, body, httpOptions);
   }
 
-  updateRecord(data, clientId, recordId){
+  updateRecord(data, clientId, recordId): Observable<any>{
     let body = JSON.stringify(data);
     return this.http.put(`${this.baseUrl}/${this.clientUrl}/${clientId}/${this.recordUrl}/${recordId}`, body, httpOptions);
   }
 
-  deleteRecord(clientId, recordId){
+  deleteRecord(clientId, recordId): Observable<any>{
     return this.http.delete(`${this.baseUrl}/${this.clientUrl}/${clientId}/${this.recordUrl}/${recordId}`, httpOptions);
   }
 
-  deleteClient(clientId){
+  deleteClient(clientId): Observable<any>{
     console.log(clientId);
     return this.http.delete(`${this.baseUrl}/${this.clientUrl}/${clientId}`, httpOptions);
   }

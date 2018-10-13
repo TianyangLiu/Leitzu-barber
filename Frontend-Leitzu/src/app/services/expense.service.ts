@@ -7,7 +7,7 @@ import { Observable } from '../../../node_modules/rxjs';
 })
 export class ExpenseService {
 
-  private baseUrl: string = "http://localhost:8000/api";
+  private baseUrl: string = "http://server.leitzu.com/api";
 
   private clientUrl: string = "clients";
 
@@ -19,7 +19,7 @@ export class ExpenseService {
     return this.http.get<any>(apiPath);
   }
 
-  createExpense(data, clientId){
+  createExpense(data, clientId): Observable<any>{
     let body = JSON.stringify(data);
     return this.http.post(`${this.baseUrl}/${this.clientUrl}/${clientId}/${this.expenseUrl}`, body, httpOptions);
   }

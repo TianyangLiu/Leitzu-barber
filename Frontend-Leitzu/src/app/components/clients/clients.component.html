@@ -1,100 +1,107 @@
-<div class="card">
+<div *ngIf="isDataLoaded; else falsyTemplate"><!--render the page only after the data is loaded -->
+  <div class="card">
     <div class="card-header">
       会员列表
     </div>
-</div>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-          <button routerLink="new-client" class="btn btn-outline-light">新会员</button>
-      </li>
-      <li class="nav-item active">
-          <button (click)="reset()" class="btn btn-outline-light">重置列表</button>
-      </li>
-    </ul>
-
-    <div class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" id="search" type="search" placeholder="会员名/手机号" [(ngModel)]="searchField" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" (click)="search(searchField)">搜索</button>
-    </div>
   </div>
-</nav>
 
-<table class="table table-striped table-dark">
-  <thead>
-    <tr>
-      <th scope="col">编号</th>
-      <th scope="col">会员姓名</th>
-      <th scope="col">性别</th>
-      <th scope="col">电话</th>
-      <th scope="col">账户金额</th>
-      <th scope="col">下次提醒</th>
-      <th scope="col">创建时间</th>
-      <th scope="col">功能</th>
-    </tr>
-  </thead>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <button routerLink="new-client" class="btn btn-outline-light">新会员</button>
+        </li>
+        <li class="nav-item active">
+            <button (click)="reset()" class="btn btn-outline-light">重置列表</button>
+        </li>
+      </ul>
 
-  <tbody>
-    <tr *ngFor="let c of clients">
-      <th scope="row">{{c.id}}</th>
-      <td><a id="stu-name" routerLink="{{c.id}}">{{c.name}}</a></td>
-      <td>{{c.gender}}</td>
-      <td>{{c.phone}}</td>
-      <td>{{c.amount}}</td>
-      <td>{{c.next_contact_date}}</td>
-      <td>{{c.established_date}}</td>
-      <td>
-        <button type="button" class="btn btn-outline-primary btn-sm" routerLink="{{c.id}}/new-expense">消费</button>
-        <button type="button" class="btn btn-outline-info btn-sm" routerLink="{{c.id}}/expenses/">账单</button>
-        <button type="button" class="btn btn-outline-success btn-sm" routerLink="{{c.id}}/renew">续费</button>
-        <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#confirmDelete" (click)="setDeleteClientId(c.id)">删除</button>
+      <div class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" id="search" type="search" placeholder="会员名/手机号" [(ngModel)]="searchField" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" (click)="search(searchField)">搜索</button>
+      </div>
+    </div>
+  </nav>
 
-        <!-- 确认删除Modal -->
-        <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title confirmDeleteTitle" id="exampleModalCenterTitle">确认删除该会员吗？</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-          
-                <div class="modal-body">
-                    <div class="form-row">
-                      <div class="form-group col-md-12 confirm-btn">
-                          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteClient()">确认删除</button>
+  <table class="table table-striped table-dark">
+    <thead>
+      <tr>
+        <th scope="col">编号</th>
+        <th scope="col">会员姓名</th>
+        <th scope="col">性别</th>
+        <th scope="col">电话</th>
+        <th scope="col">账户金额</th>
+        <th scope="col">下次提醒</th>
+        <th scope="col">创建时间</th>
+        <th scope="col">功能</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let c of clients">
+        <th scope="row">{{c.id}}</th>
+        <td><a id="stu-name" routerLink="{{c.id}}">{{c.name}}</a></td>
+        <td>{{c.gender}}</td>
+        <td>{{c.phone}}</td>
+        <td>{{c.amount}}</td>
+        <td>{{c.next_contact_date}}</td>
+        <td>{{c.established_date}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-primary btn-sm" routerLink="{{c.id}}/new-expense">消费</button>
+          <button type="button" class="btn btn-outline-info btn-sm" routerLink="{{c.id}}/expenses/">账单</button>
+          <button type="button" class="btn btn-outline-success btn-sm" routerLink="{{c.id}}/renew">续费</button>
+          <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#confirmDelete" (click)="setDeleteClientId(c.id)">删除</button>
+
+          <!-- 确认删除Modal -->
+          <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title confirmDeleteTitle" id="exampleModalCenterTitle">确认删除该会员吗？</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+            
+                  <div class="modal-body">
+                      <div class="form-row">
+                        <div class="form-group col-md-12 confirm-btn">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteClient()">确认删除</button>
+                        </div>
                       </div>
-                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-        </div><!-- 确认删除Modal end -->
-        
-      </td>
-    </tr>
-  </tbody>
+          </div><!-- 确认删除Modal end -->
+          
+        </td>
+      </tr>
+    </tbody>
 
-  <tfoot>
-    <tr>
-      <td colspan="9">
-          <div id="page-control-panel">
-              <a *ngIf="paginateLinks.prev" class="" (click)="prevPage(paginateLinks.prev)">&laquo;</a>
-              <a *ngIf="!paginateLinks.prev" class="" disabled>&laquo;</a>
-              
-              
-              <a *ngFor="let pageNum of getArray(paginateInfo.last_page); let i = index" (click)="toPage(i+1, paginateInfo.path)"  class="{{ i+1 == currentPage ? 'highlight':'normal'}} page-num">
-                  <span class="" [hidden]="!otherPages(i, paginateInfo.current_page)">{{ i+1 }}</span>
-                  <span class="highlightCurrentPage" [hidden]="!highlighCurrentPage(i, paginateInfo.current_page)">{{ i+1 }}</span>
-              </a>
-              
-              
-              <a *ngIf="paginateLinks.next" class="" (click)="nextPage(paginateLinks.next)">&raquo;</a>
-              <a *ngIf="!paginateLinks.next" class="" disabled>&raquo;</a>
-            </div>
-      </td>
-    </tr>
-  </tfoot>
-</table>
+    <tfoot>
+      <tr>
+        <td colspan="9">
+            <div id="page-control-panel">
+                <a *ngIf="paginateLinks.prev" class="" (click)="prevPage(paginateLinks.prev)">&laquo;</a>
+                <a *ngIf="!paginateLinks.prev" class="" disabled>&laquo;</a>
+                
+                <a *ngFor="let pageNum of getArray(paginateInfo.last_page); let i = index" (click)="toPage(i+1, paginateInfo.path)"  class="{{ i+1 == currentPage ? 'highlight':'normal'}} page-num">
+                    <span class="" [hidden]="!otherPages(i, paginateInfo.current_page)">{{ i+1 }}</span>
+                    <span class="highlightCurrentPage" [hidden]="!highlighCurrentPage(i, paginateInfo.current_page)">{{ i+1 }}</span>
+                </a>
+                
+                <a *ngIf="paginateLinks.next" class="" (click)="nextPage(paginateLinks.next)">&raquo;</a>
+                <a *ngIf="!paginateLinks.next" class="" disabled>&raquo;</a>
+              </div>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div><!-- end loading -->
+
+<ng-template #falsyTemplate>
+  <div class="renderPageLoading">
+    <div class="lds-ellipsis"><span>加载中</span><div></div><div></div><div></div><div></div></div>
+  </div>
+</ng-template>
+

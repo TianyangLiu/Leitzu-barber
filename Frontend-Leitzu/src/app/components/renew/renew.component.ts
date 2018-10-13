@@ -17,6 +17,8 @@ export class RenewComponent implements OnInit {
 
   public rechargeAmount = null;
 
+  public isDataLoaded = false;
+
   public error = {
     name: null,
     gender: null,
@@ -37,8 +39,13 @@ export class RenewComponent implements OnInit {
     this.route.params.subscribe(params => { this.id = params['id']; });
 
     this.client.getClient(this.id).subscribe(clientInfo => {
-      this.clientInfo = clientInfo.data; // store client info
-    }); // end getClient
+      clientInfo = this.handleGetClientResponse(clientInfo);
+    });
+  }
+
+  handleGetClientResponse(clientInfo){
+    this.clientInfo = clientInfo.data;
+    this.isDataLoaded = true;
   }
 
   back(){

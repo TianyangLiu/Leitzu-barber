@@ -20,6 +20,8 @@ export class NewExpenseComponent implements OnInit {
 
   public receipt_date: Date = null;
 
+  public isDataLoaded = false;
+
   public expenseForm = {
     client_id: null,
     receipt_date: null,
@@ -43,8 +45,13 @@ export class NewExpenseComponent implements OnInit {
     this.route.params.subscribe(params => { this.clientId = params['id']; });
 
     this.client.getClient(this.clientId).subscribe(clientInfo => {
-      this.clientName = clientInfo.data.name;
+      clientInfo = this.handleGetClientResponse(clientInfo);
     });
+  }
+
+  handleGetClientResponse(clientInfo){
+    this.clientName = clientInfo.data.name;
+    this.isDataLoaded = true;
   }
 
   back(){
@@ -69,8 +76,7 @@ export class NewExpenseComponent implements OnInit {
   }
 
   handleResponse(data){
-    console.log(data);
-      this.router.navigateByUrl(`/clients/${this.clientId}/expenses`);
+    this.router.navigateByUrl(`/clients/${this.clientId}/expenses`);
   }
 
   handleError(error){

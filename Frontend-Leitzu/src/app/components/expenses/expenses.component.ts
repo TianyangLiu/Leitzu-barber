@@ -20,6 +20,8 @@ export class ExpensesComponent implements OnInit {
 
   public totalExpense: number[] =[];
 
+  public isDataLoaded = false;
+
   constructor
   (
     private client: ClientService,
@@ -32,15 +34,18 @@ export class ExpensesComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => { this.id = params['id']; });
 
-    this.client.getClient(this.id).subscribe(clientInfo => {
+    this.client.getClient(this.id).subscribe(
+      clientInfo => {
+        this.expense.getExpenses(clientInfo.data.href.expenses).subscribe(
+          expenses => this.handleResponse(clientInfo, expenses)
+        );
+    });
+  }
 
-      this.clientName = clientInfo.data.name;
-
-      this.expense.getExpenses(clientInfo.data.href.expenses).subscribe(expenses => {
-          this.expenses = expenses.data;
-      });
-
-    }); // end getClient
+  handleResponse(clientInfo, expenses){
+    this.clientName = clientInfo.data.name;
+    this.expenses = expenses.data;
+    this.isDataLoaded = true;
   }
 
   back(){

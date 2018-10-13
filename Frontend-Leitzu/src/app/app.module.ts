@@ -7,7 +7,7 @@ import { ClientsComponent } from './components/clients/clients.component';
 import { ExpensesComponent } from './components/expenses/expenses.component';
 
 import { AppRoutingModule } from './app-routing.module';
-import { RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './components/dashboard/dashboard.component';

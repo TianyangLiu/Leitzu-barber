@@ -25,6 +25,8 @@ export class ClientsComponent implements OnInit {
 
   public toBeDeletedClientId = null;
 
+  public isDataLoaded = false;
+
   constructor(private client: ClientService) { }
 
   ngOnInit() {
@@ -38,6 +40,7 @@ export class ClientsComponent implements OnInit {
     this.clients = data.data;
     this.paginateLinks = data.links;
     this.paginateInfo = data.meta;
+    this.isDataLoaded = true;
   }
 
   handleError(error){
