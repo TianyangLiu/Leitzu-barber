@@ -25,13 +25,15 @@ class NewExpenseRequest extends FormRequest
     {
         return [
             'activity_cost' => 'required',
+            'receipt_date' => 'required'
         ];
     }
     
     public function messages()
     {
         return [
-            'activity_cost.required' => '内容不能为空'
+            'activity_cost.required' => '内容不能为空',
+            'receipt_date.required' => '内容不能为空'
         ];
     }
 }

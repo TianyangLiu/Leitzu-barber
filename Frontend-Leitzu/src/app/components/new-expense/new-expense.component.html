@@ -1,41 +1,58 @@
-<div class="card">
-    <div class="card-header">
-      本次消费 - {{clientName}}
-    </div>
-</div>
-
-
-<div class="card">
-  <div class="card-body">
-
-    <div class="alert alert-danger err" [hidden]="!error.activity_cost">
-      <p>{{error.activity_cost}}</p>
-    </div>
-
-    <div class="alert alert-danger err" [hidden]="!insufficientError">
-      <p>{{insufficientError}}</p>
-    </div>
-
-    <form #newExpenseForm=ngForm (ngSubmit)="onSubmit()">
-
-      <div class="form-row">
-        <div class="form-group col-md-2">
-          <label for="inputName">金额</label>
-          <input type="number" step="0.01" placeholder="0.00" name="activityCost" class="form-control" id="inputActivityCost" [(ngModel)]="expenseForm.activity_cost" required>
-        </div>
+<div *ngIf="isDataLoaded; else falsyTemplate"><!--render the page only after the data is loaded -->
+ 
+  <div class="card">
+      <div class="card-header">
+        本次消费 - {{clientName}}
       </div>
-
-      <div class="form-row">
-        <div class="form-group col-md-1.5">
-          <button type="submit" class="btn btn-outline-success">确认修改</button>
-        </div>
-
-        <div class="form-group col-md-1">
-            <button (click)="back()" class="btn btn-outline-primary">返回</button>
-        </div>
-      </div>
-
-    </form>
-
   </div>
-</div>
+
+
+  <div class="card">
+    <div class="card-body">
+
+      <div class="alert alert-danger err" [hidden]="!error.activity_cost">
+        <p>{{error.activity_cost}}</p>
+      </div>
+
+      <div class="alert alert-danger err" [hidden]="!error.receipt_date">
+        <p>{{error.receipt_date}}</p>
+      </div>
+
+      <form #newExpenseForm=ngForm (ngSubmit)="onSubmit()">
+
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <label for="inputName">金额</label>
+            <input type="number" step="0.01" placeholder="0.00" name="activityCost" class="form-control" id="inputActivityCost" [(ngModel)]="activity_cost" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label for="inputReceiptDate">消费日期</label>
+            <input type="date" name="receipt_date" class="form-control" id="inputReceiptDate" [(ngModel)]="receipt_date">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-1.5">
+            <button type="submit" class="btn btn-outline-success">确认修改</button>
+          </div>
+
+          <div class="form-group col-md-1">
+              <button (click)="back()" class="btn btn-outline-primary">返回</button>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</div><!-- end loading -->
+
+<ng-template #falsyTemplate>
+  <div class="renderPageLoading">
+    <div class="lds-ellipsis"><span>加载中</span><div></div><div></div><div></div><div></div></div>
+  </div>
+</ng-template>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Client } from '../../interfaces/clients';
 import { ClientService } from '../../services/client.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-renew',
@@ -16,7 +17,7 @@ export class RenewComponent implements OnInit {
 
   public rechargeAmount = null;
 
-  public success = null;
+  public isDataLoaded = false;
 
   public error = {
     name: null,
@@ -30,29 +31,28 @@ export class RenewComponent implements OnInit {
   constructor
   ( private client: ClientService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private _location: Location
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => { this.id = params['id']; });
 
     this.client.getClient(this.id).subscribe(clientInfo => {
-      this.clientInfo = clientInfo.data; // store client info
-    }); // end getClient
+      clientInfo = this.handleGetClientResponse(clientInfo);
+    });
+  }
+
+  handleGetClientResponse(clientInfo){
+    this.clientInfo = clientInfo.data;
+    this.isDataLoaded = true;
   }
 
   back(){
-    this.router.navigateByUrl('/clients');
-  }
-
-  resetSuccess(){
-    this.success = null;
+    this._location.back();
   }
 
   onSubmit(){
-    if(this.success){
-      this.success = null;
-    }
 
     this.temp_err = null;
     this.error = {
@@ -70,11 +70,7 @@ export class RenewComponent implements OnInit {
   }
 
   handleResponse(){
-    this.success = 1;
-
-    this.client.getClient(this.id).subscribe(clientInfo => {
-      this.clientInfo = clientInfo.data; // store client info
-    });
+    this.router.navigateByUrl('/clients');
   }
 
   handleError(error){

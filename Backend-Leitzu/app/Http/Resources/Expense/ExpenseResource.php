@@ -18,7 +18,7 @@ class ExpenseResource extends JsonResource
             'id' => $this->id,
             'activity_cost' => $this->activity_cost,
             'total_cost' => $this->client->expenses->sum('activity_cost'),
-            'created_at' => $this->created_at->format('Y年m月d日')
+            'receipt_date' => $this->receipt_date
         ];
     }
 }

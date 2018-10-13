@@ -22,6 +22,7 @@ class CreateExpensesTable extends Migration
             $table->increments('id');
             $table->integer('client_id')->unsigned()->index();
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->date('receipt_date');
             $table->decimal('activity_cost', 8, 2);
             $table->timestamps();
         });

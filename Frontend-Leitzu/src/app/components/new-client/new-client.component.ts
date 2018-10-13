@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../services/client.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Client } from '../../interfaces/clients';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-new-client',
@@ -28,14 +29,16 @@ export class NewClientComponent implements OnInit {
 
   constructor(
     private client: ClientService,
-    private router: Router
+    private router: Router,
+    private _location: Location
     ) { }
 
   ngOnInit() {
   }
 
   back(){
-    this.router.navigateByUrl('/clients');
+    //this.router.navigateByUrl('/clients');
+    this._location.back();
   }
 
   onSubmit(){
