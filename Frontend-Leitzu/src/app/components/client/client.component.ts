@@ -81,13 +81,10 @@ export class ClientComponent implements OnInit {
   getClientAndRecord(){
     this.client.getClient(this.id).subscribe(
       clientInfo => {
-        
-
         this.client.getRecords(clientInfo.data.href.records).subscribe(
           records => this.handleGetClientAndRecordResponse(clientInfo, records),
           error => this.handleError(error)
         );
-
       },
       error => this.handleError(error)
     );
@@ -125,6 +122,13 @@ export class ClientComponent implements OnInit {
   onSubmit(){
     this.sumbitReset();
     this.isClientDataUpdated = false;
+
+    // this.clientForm.id = ;
+    // this.clientForm.name = ;
+    // this.clientForm.gender = ;
+    // this.clientForm.phone = ;
+    // this.clientForm.amount = ;
+    // this.clientForm.next_contact_date = ;
 
     this.client.updateClient(this.clientInfo).subscribe(
       data => this.handleResponse(),
