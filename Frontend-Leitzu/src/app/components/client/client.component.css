@@ -89,3 +89,22 @@ form div{
 .edit:hover{
     color: #208337;
 }
+
+.clear-next-date{
+    padding-top: 30px;
+    padding-left: 10px;
+    font-size: 1.6em;
+}
+
+.clear-next-date > span{
+    padding-left: 9px;
+    padding-right: 9px;
+    padding-bottom: 4px;
+    border: solid 1px;
+    border-radius: 5px;
+}
+
+.clear-next-date > span:hover{
+    cursor: pointer;
+    color: rgb(226, 64, 64);
+}
